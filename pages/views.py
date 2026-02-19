@@ -80,9 +80,11 @@ class ProductListView(ListView):
         return context
 
 
-class ProductForm(forms.Form):
-    name = forms.CharField(required=True)
-    price = forms.FloatField(required=True)
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'price'] 
+
     def clean_price(self):
         price = self.cleaned_data.get("price")
         if price is None or price <= 0:
@@ -102,6 +104,7 @@ class ProductCreateView(View):
     def post(self, request):
         form = ProductForm(request.POST)
         if form.is_valid():
+            form.save()
             return redirect("confirmation")
         else:
             viewData = {}
