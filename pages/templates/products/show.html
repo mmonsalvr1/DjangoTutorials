@@ -16,6 +16,9 @@
         {% else %}
         <p class="card-text">{{product.price}}</p>
         {% endif %}
+        {% for comment in product.comment_set.all %}
+        - {{ comment.description }}<br />
+        {% endfor %} 
       </div>
     </div>
   </div>
