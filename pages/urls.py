@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (AboutPageView, ContactPageView, HomePageView,
                     ProductConfirmationView, ProductCreateView,
-                    ProductIndexView, ProductShowView)
+                    ProductIndexView, ProductShowView, CartRemoveAllView, CartView)
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
@@ -14,4 +14,7 @@ urlpatterns = [
     path(
         "products/confirmation/", ProductConfirmationView.as_view(), name="confirmation"
     ),
+    path("cart/", CartView.as_view(), name="cart_index"),
+    path("cart/add/<str:product_id>", CartView.as_view(), name="cart_add"),
+    path("cart/removeAll", CartRemoveAllView.as_view(), name="cart_removeAll")
 ]
