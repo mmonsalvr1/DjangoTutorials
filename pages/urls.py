@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (AboutPageView, ContactPageView, HomePageView,
+from .views import (AboutPageView, ContactPageView, HomePageView, ImageViewNoDI,
                     ProductConfirmationView, ProductCreateView,
                     ProductIndexView, ProductShowView, CartRemoveAllView, CartView, ImageViewFactory)
 from .utils import ImageLocalStorage
@@ -19,6 +19,8 @@ urlpatterns = [
     path("cart/add/<str:product_id>", CartView.as_view(), name="cart_add"),
     path("cart/removeAll", CartRemoveAllView.as_view(), name="cart_removeAll"),
     path('image/', ImageViewFactory(ImageLocalStorage()).as_view(), name='image_index'),
-    path('image/save', ImageViewFactory(ImageLocalStorage()).as_view(), name='image_save')
+    path('image/save', ImageViewFactory(ImageLocalStorage()).as_view(), name='image_save'),
+    path('imagenotdi/', ImageViewNoDI.as_view(), name='imagenodi_index'),
+    path('image/save', ImageViewNoDI.as_view(), name='imagenodi_save')
 
 ]
